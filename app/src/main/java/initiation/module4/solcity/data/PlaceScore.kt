@@ -1,6 +1,6 @@
 package initiation.module4.solcity.data
 
-enum class PlaceScore(value: Int) {
+enum class PlaceScore(val value: Int) {
     ONE(1),
     TWO(2),
     THREE(3),

@@ -57,7 +57,7 @@ Card of pic, name, type and score Because ["Cards should be easy to scan for rel
 
 The score is shown with stars icons, making it ["an informative punch into a small form factor"](https://m3.material.io/styles/icons/designing-icons).
 It makes the score easier to read. First there was the number of stars corresponding to the score, but even if we might think it's obviously a mark out of five, it might not be.
-So there are five stars which are filled with the primary container color depending on the score value.
+The solution was to display five stars on a `secondary container color`, which are filled with the `on secondary container color`, depending on the score value.
 
 The contact logo is actually an email no matter the type of contact it is, but it should depend on the media. It will be implemented later.
 

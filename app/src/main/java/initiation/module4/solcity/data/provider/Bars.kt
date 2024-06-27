@@ -11,7 +11,7 @@ object Bars {
             name = "Jazz'One",
             type = PlaceType.BAR,
             description = R.string.places_description,
-            score = PlaceScore.ONE,
+            score = PlaceScore.THREE,
             contact = "+33666666666",
             imageRes = R.drawable.waiting_for_place_image
         ),
