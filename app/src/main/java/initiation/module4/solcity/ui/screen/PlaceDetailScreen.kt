@@ -11,9 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Email
-import androidx.compose.material.icons.twotone.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -33,6 +31,7 @@ import initiation.module4.solcity.data.Place
 import initiation.module4.solcity.ui.theme.SolCityTheme
 import initiation.module4.solcity.R
 import initiation.module4.solcity.data.provider.Bars
+import initiation.module4.solcity.ui.utils.DrawScoreStars
 
 @Composable
 fun PlaceDetailImage(
@@ -87,36 +86,13 @@ fun PlaceTypeAndScore(
                     for(i in 1..5)
                         DrawScoreStars(
                             score = place.score.value,
-                            starNumber = i
+                            starNumber = i,
+                            filledStarColor = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                 }
             }
         }
     }
-}
-
-@Composable
-private fun DrawScoreStars(
-    score: Int,
-    starNumber: Int
-) {
-    if (starNumber <= score) {
-        Icon(
-            imageVector = Icons.Filled.Star,
-            contentDescription = String
-                .format(stringResource(R.string.accessibility_score),
-                    score),
-            tint = MaterialTheme.colorScheme.onPrimaryContainer
-        )
-    } else {
-        Icon(
-            imageVector = Icons.TwoTone.Star,
-            contentDescription = String
-                .format(stringResource(R.string.accessibility_score),
-                    score)
-        )
-    }
-
 }
 
 @Composable
