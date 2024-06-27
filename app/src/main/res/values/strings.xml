@@ -5,6 +5,7 @@
     <string name="accessibility_waiting_place_picture">Waiting for a place picture</string>
     <string name="accessibility_contact">Contact icon</string>
     <string name="accessibility_score">Place score is %d out of five </string>
+    <string name="accessibility_back_navigation">Go on previous page</string>
 
     <!-- Dev ressources -->
     <string name="places_description">
