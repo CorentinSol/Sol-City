@@ -4,17 +4,16 @@ import initiation.module4.solcity.R
 import initiation.module4.solcity.data.Place
 import initiation.module4.solcity.data.PlaceScore
 import initiation.module4.solcity.data.PlaceType
-import initiation.module4.solcity.data.provider.ConcertHalls.allConcertHalls
 
 object Restaurants {
-    val allRestaurants = listOf(
+    private val allRestaurants = listOf(
         Place(
             name = "First Restaurant",
             type = PlaceType.RESTAURANT,
             description = R.string.places_description,
             score = PlaceScore.FIVE,
             contact = "@firstrestaurant",
-            imageRes = R.drawable.restaurant_1
+            imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
             name = "Eat It",
@@ -22,7 +21,7 @@ object Restaurants {
             description = R.string.places_description,
             score = PlaceScore.FIVE,
             contact = "eatit@contact.com",
-            imageRes = R.drawable.restaurant_2
+            imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
             name = "It Eats ",
@@ -30,7 +29,7 @@ object Restaurants {
             description = R.string.places_description,
             score = PlaceScore.FOUR,
             contact = "iteats@contact.com",
-            imageRes = R.drawable.restaurant_3
+            imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
             name = "It Eats Telefon Maison",
@@ -38,7 +37,7 @@ object Restaurants {
             description = R.string.places_description,
             score = PlaceScore.THREE,
             contact = "+33611111111",
-            imageRes = R.drawable.restaurant_4
+            imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
             name = "Sol's Restaurant",
@@ -46,7 +45,7 @@ object Restaurants {
             description = R.string.places_description,
             score = PlaceScore.TWO,
             contact = "+33622222222",
-            imageRes = R.drawable.restaurant_5
+            imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
             name = "Another Restaurant",
@@ -54,7 +53,7 @@ object Restaurants {
             description = R.string.places_description,
             score = PlaceScore.ONE,
             contact = "+33666666666",
-            imageRes = R.drawable.restaurant_6
+            imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
             name = "Last Restaurant",
@@ -62,7 +61,7 @@ object Restaurants {
             description = R.string.places_description,
             score = PlaceScore.FOUR,
             contact = "@lastrestaurant",
-            imageRes = R.drawable.restaurant_7
+            imageRes = R.drawable.waiting_for_place_image
         )
     )
 

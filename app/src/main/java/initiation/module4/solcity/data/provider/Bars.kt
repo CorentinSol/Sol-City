@@ -11,9 +11,9 @@ object Bars {
             name = "Jazz'One",
             type = PlaceType.BAR,
             description = R.string.places_description,
-            score = PlaceScore.FIVE,
+            score = PlaceScore.ONE,
             contact = "+33666666666",
-            imageRes = R.drawable.bar_1
+            imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
             name = "Jam'Z",
@@ -21,7 +21,7 @@ object Bars {
             description = R.string.places_description,
             score = PlaceScore.FIVE,
             contact = "jamz@contact.com",
-            imageRes = R.drawable.bar_2
+            imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
             name = "Coltrane Land",
@@ -29,7 +29,7 @@ object Bars {
             description = R.string.places_description,
             score = PlaceScore.FOUR,
             contact = "@coltranesland",
-            imageRes = R.drawable.bar_3
+            imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
             name = "Bar'd Games",
@@ -37,7 +37,7 @@ object Bars {
             description = R.string.places_description,
             score = PlaceScore.THREE,
             contact = "@boardbardgamesbar",
-            imageRes = R.drawable.bar_4
+            imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
             name = "It's Raining Drinks and Dogs",
@@ -45,7 +45,7 @@ object Bars {
             description = R.string.places_description,
             score = PlaceScore.TWO,
             contact = "rainingdrinksdogs@contact.com",
-            imageRes = R.drawable.bar_5
+            imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
             name = "A Bubble Picture",
@@ -53,7 +53,7 @@ object Bars {
             description = R.string.places_description,
             score = PlaceScore.ONE,
             contact = "@bubblepicturebar",
-            imageRes = R.drawable.bar_6
+            imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
             name = "Another One (A - O.P.)",
@@ -61,7 +61,7 @@ object Bars {
             description = R.string.places_description,
             score = PlaceScore.FOUR,
             contact = "+33611111111",
-            imageRes = R.drawable.bar_7
+            imageRes = R.drawable.waiting_for_place_image
         ),
     )
 
