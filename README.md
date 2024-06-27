@@ -59,3 +59,6 @@ Some constraints are explicitly formulated in the subject, [Create a My City app
 
 //TODO Pictures rights (legal aspect)
 
+# Comment about places informations
+
+None of the place used in this application is meant to be an existing one, and every contact informations (phonenumbers, emails and @) are fictive. Let me know if any of these informations causes any problem to change them.
