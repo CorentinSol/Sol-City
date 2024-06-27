@@ -19,6 +19,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material.icons.twotone.Star
 import androidx.compose.material3.Card
@@ -83,12 +84,13 @@ fun PlaceTypeAndScore(
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
-                    .background(MaterialTheme.colorScheme.secondaryContainer)
+                    .background(MaterialTheme.colorScheme.primaryContainer)
             ) {
                 Text(
                     text = place.type.toString(),
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
                 Row(
                     modifier = Modifier
@@ -116,7 +118,7 @@ private fun DrawScoreStars(
             contentDescription = String
                 .format(stringResource(R.string.accessibility_score),
                     score),
-            tint = MaterialTheme.colorScheme.onSecondaryContainer
+            tint = MaterialTheme.colorScheme.onPrimaryContainer
         )
     } else {
         Icon(
@@ -136,7 +138,7 @@ fun PlaceDescription(
 ) {
     Card(
         colors = CardDefaults
-            .cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+            .cardColors(containerColor = MaterialTheme.colorScheme.primary),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 4.dp),
         modifier = modifier
             .padding(top = dimensionResource(R.dimen.padding_medium))
@@ -145,7 +147,7 @@ fun PlaceDescription(
             text = stringResource(R.string.places_description),
             textAlign = TextAlign.Justify,
             style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            color = MaterialTheme.colorScheme.onPrimary,
             modifier = Modifier
                 .padding(dimensionResource(R.dimen.padding_large))
 
@@ -155,7 +157,7 @@ fun PlaceDescription(
 }
 
 @Composable
-fun PlaceContactInformations(
+fun PlaceContactInformation(
     place: Place,
     modifier: Modifier = Modifier
 ) {
@@ -167,20 +169,20 @@ fun PlaceContactInformations(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier
-                .background(MaterialTheme.colorScheme.secondaryContainer)
+                .background(MaterialTheme.colorScheme.primaryContainer)
                 .padding(dimensionResource(R.dimen.padding_small))
         ) {
             Icon(
-                imageVector = Icons.Filled.Email,
+                imageVector = Icons.Outlined.Email,
                 contentDescription = stringResource(R.string.accessibility_contact),
-                tint = MaterialTheme.colorScheme.onSecondary,
+                tint = MaterialTheme.colorScheme.onPrimaryContainer,
                 modifier = Modifier
                     .padding(end = dimensionResource(R.dimen.padding_medium))
             )
             Text(
                 text = place.contact,
                 style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSecondaryContainer
+                color = MaterialTheme.colorScheme.onPrimaryContainer
             )
         }
     }
@@ -209,7 +211,7 @@ fun PlaceDetailScreen(
             PlaceDescription(
                 place = place
             )
-            PlaceContactInformations(
+            PlaceContactInformation(
                 place = place
             )
         }
