@@ -18,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import initiation.module4.solcity.data.provider.Bars
 import initiation.module4.solcity.ui.screen.PlaceDetailScreen
+import initiation.module4.solcity.ui.screen.PlaceListScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,8 +51,12 @@ fun SolCityApp() {
     Scaffold(
         topBar = {SolCityTopAppBar("FIXME") }
     ) { innerPadding ->
-        PlaceDetailScreen(
+       /* PlaceDetailScreen(
             place = Bars.getAllBars().get(0),
+            modifier = Modifier.padding(innerPadding)
+        ) */
+        PlaceListScreen(
+            placeList = Bars.getAllBars(),
             modifier = Modifier.padding(innerPadding)
         )
     }
