@@ -58,6 +58,7 @@ Some constraints are explicitly formulated in the subject, [Create a My City app
 # Pictures
 
 //TODO Pictures rights (legal aspect)
+
 The drawable [waiting_for_place_image](https://github.com/CorentinSol/Sol-City/blob/main/app/src/main/res/drawable/waiting_for_place_image.JPG) is property of Corentin Solignac. No copy allowed. 
 
 # Comment about places informations
