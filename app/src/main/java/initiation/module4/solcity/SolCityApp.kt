@@ -13,60 +13,33 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import initiation.module4.solcity.data.provider.Bars
+import initiation.module4.solcity.ui.CityAppScreen
+import initiation.module4.solcity.ui.SolCityUiState
+import initiation.module4.solcity.ui.SolCityViewModel
 import initiation.module4.solcity.ui.screen.PlaceDetailScreen
 import initiation.module4.solcity.ui.screen.PlaceListScreen
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SolCityTopAppBar(
-    pageTitle: String
-) {
-    CenterAlignedTopAppBar(
-        title = {
-            Text(
-                text = pageTitle,
-                color = MaterialTheme.colorScheme.onPrimary,
-                style = MaterialTheme.typography.titleLarge
-            )
-        },
-        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(MaterialTheme.colorScheme.primary),
-        navigationIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = stringResource(R.string.accessibility_back_navigation),
-                    tint = MaterialTheme.colorScheme.onPrimary
-                )
-            }
-        },
-    )
-}
-
 @Composable
 fun SolCityApp() {
-    Scaffold(
-        topBar = {SolCityTopAppBar("FIXME") }
-    ) { innerPadding ->
-       /* PlaceDetailScreen(
-            place = Bars.getAllBars().get(0),
-            modifier = Modifier.padding(innerPadding)
-        ) */
-        PlaceListScreen(
-            placeList = Bars.getAllBars(),
-            modifier = Modifier.padding(innerPadding)
-        )
-    }
+    val viewModel:SolCityViewModel = viewModel()
+    val solCityUiState = viewModel.uiState.collectAsState().value
 
+    CityAppScreen(
+        viewModel = viewModel,
+        solCityUiState = solCityUiState
+    )
 }
 
 @Preview (widthDp = 400)
 @Composable
 fun SolCityAppCompactPreview() {
-    SolCityApp()
+    //SolCityApp()
 }
 
 @Preview (widthDp = 700)

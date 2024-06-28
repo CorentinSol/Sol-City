@@ -2,6 +2,7 @@ package initiation.module4.solcity.data
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.ui.res.stringResource
 import initiation.module4.solcity.R
 
 data class Place(

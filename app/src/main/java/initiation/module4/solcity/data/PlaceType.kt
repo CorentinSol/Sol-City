@@ -6,5 +6,6 @@ enum class PlaceType {
     RESTAURANT,
     UNIVERSITY,
     PARK,
-    OTHER
+    OTHER,
+    WORKING_ON
 }

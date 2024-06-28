@@ -71,12 +71,12 @@ fun PlaceItem(
     onClick: () -> Unit
 ) {
     Card(
+        onClick = onClick,
         colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primary),
         elevation = CardDefaults.elevatedCardElevation(4.dp),
         modifier = modifier
             .padding(vertical = dimensionResource(R.dimen.padding_small))
             .height(100.dp)
-            .clickable { /* TODO */ }
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -113,7 +113,8 @@ fun PlaceItem(
 @Composable
 fun PlaceListScreen(
     placeList: List<Place>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: (Place) -> Unit
 ) {
     LazyColumn(
         contentPadding = PaddingValues(dimensionResource(R.dimen.padding_large)),
@@ -123,7 +124,7 @@ fun PlaceListScreen(
         items(placeList) { item ->
             PlaceItem(
                 place = item,
-                onClick = { /*TODO*/ }
+                onClick = { onClick(item) }
             )
         }
 
@@ -133,5 +134,5 @@ fun PlaceListScreen(
 @Preview
 @Composable
 fun PlaceListScreenPreview() {
-    PlaceListScreen(Bars.getAllBars())
+    PlaceListScreen(Bars.getAllBars(), onClick = { })
 }
