@@ -74,7 +74,7 @@ fun PlaceTypeAndScore(
                     .background(MaterialTheme.colorScheme.primaryContainer)
             ) {
                 Text(
-                    text = place.type.toString(),
+                    text = stringResource(place.type.label),
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.labelLarge,
                     color = MaterialTheme.colorScheme.onPrimaryContainer

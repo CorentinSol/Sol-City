@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">Sol City App</string>
 
+    <!-- Place types related -->
+    <string name="label_bar">Bar</string>
+    <string name="label_concert_hall">Concert Hall</string>
+    <string name="label_restaurant">Restaurant</string>
+    <string name="label_university">University</string>
+    <string name="label_park">Park</string>
+    <string name="label_other">Other</string>
+
+    <!-- Default or working on values -->
     <string name="in_construction">In construction, come back later</string>
+    <string name="label_working_on">Working On</string>
     <string name="default_contact">mail@contact.com</string>
 
     <!-- Accessibility resources -->

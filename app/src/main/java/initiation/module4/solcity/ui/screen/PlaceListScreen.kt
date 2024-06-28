@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import initiation.module4.solcity.R
 import initiation.module4.solcity.data.Place
 import initiation.module4.solcity.data.provider.Bars
+import initiation.module4.solcity.data.provider.ConcertHalls
 import initiation.module4.solcity.ui.utils.DrawScoreStars
 
 
@@ -47,19 +48,27 @@ fun PlaceItemLabel(
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = modifier
+        modifier = modifier.fillMaxWidth()
     ) {
         Text(
-            text = place.type.toString(),
+            text = stringResource(place.type.label),
             modifier = Modifier
                 .padding(end = dimensionResource(R.dimen.padding_large))
+              //  .weight(1F)
         )
-        for (i in 1..5) {
-            DrawScoreStars(
-                score = place.score.value,
-                starNumber = i,
-                filledStarColor = MaterialTheme.colorScheme.onPrimary
-            )
+        Row(
+            horizontalArrangement = Arrangement.End,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .height(20.dp)
+        ) {
+            for (i in 1..5) {
+                DrawScoreStars(
+                    score = place.score.value,
+                    starNumber = i,
+                    filledStarColor = MaterialTheme.colorScheme.onPrimary,
+                )
+            }
         }
     }
 }
@@ -99,7 +108,8 @@ fun PlaceItem(
                 Text(
                     text = place.name,
                     style = MaterialTheme.typography.titleLarge,
-                    maxLines = 1
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
                 PlaceItemLabel(
                     place = place,
@@ -134,5 +144,5 @@ fun PlaceListScreen(
 @Preview
 @Composable
 fun PlaceListScreenPreview() {
-    PlaceListScreen(Bars.getAllBars(), onClick = { })
+    PlaceListScreen(ConcertHalls.getAllConcertHalls(), onClick = { })
 }
