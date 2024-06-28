@@ -7,6 +7,7 @@ import initiation.module4.solcity.R
 enum class PlaceType(
     @StringRes val label: Int
 ) {
+    ALL(label = R.string.label_all),
     BAR(label = R.string.label_bar),
     CONCERT_HALL(label = R.string.label_concert_hall),
     RESTAURANT(label = R.string.label_restaurant),

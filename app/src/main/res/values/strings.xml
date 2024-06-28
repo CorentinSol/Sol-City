@@ -2,6 +2,7 @@
     <string name="app_name">Sol City App</string>
 
     <!-- Place types related -->
+    <string name="label_all">All places</string>
     <string name="label_bar">Bar</string>
     <string name="label_concert_hall">Concert Hall</string>
     <string name="label_restaurant">Restaurant</string>

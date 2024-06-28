@@ -82,7 +82,7 @@ fun CityAppScreen(
                 //FIXME List name
                 pageTitle =  when(currentScreen) {
                     SolCityScreen.valueOf(SolCityScreen.LIST_SCREEN.name)
-                        -> solCityUiState.currentPlaceList.toString()
+                        -> solCityUiState.currentTypeListName
                     SolCityScreen.valueOf(SolCityScreen.DETAIL_SCREEN.name)
                         -> solCityUiState.currentSelectedPlace.name
                     else -> stringResource(R.string.app_name)
