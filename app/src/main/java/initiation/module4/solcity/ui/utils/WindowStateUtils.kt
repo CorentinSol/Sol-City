@@ -43,11 +43,6 @@ object BottomBarTypeList {
                 placeType = PlaceType.RESTAURANT
             ),
             PlaceTypeNavigationElements(
-                label = stringResource(R.string.label_park),
-                icon = painterResource(R.drawable.park_24dp),
-                placeType = PlaceType.PARK
-            ),
-            PlaceTypeNavigationElements(
                 label = stringResource(R.string.label_other),
                 icon = painterResource(R.drawable.more_horiz_24dp),
                 placeType = PlaceType.OTHER

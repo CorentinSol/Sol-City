@@ -22,7 +22,6 @@ object DefaultPlace {
         return Bars.getAllBars() +
             ConcertHalls.getAllConcertHalls() +
             Restaurants.getAllRestaurants() +
-            Parks.getAllParks() +
             Others.getAllOthers()
     }
 }

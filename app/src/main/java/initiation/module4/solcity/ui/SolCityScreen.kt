@@ -111,7 +111,9 @@ fun CityAppScreen(
             composable(route = SolCityScreen.LIST_SCREEN.name) {
                 PlaceListScreen(
                     currentTab = solCityUiState.currentPlaceType,
-                    placeList = solCityUiState.currentPlaceList,
+                    placeList = solCityUiState.currentPlaceList.sortedBy {
+                        it.score.value
+                    }.reversed(),
                     onClickOnPlaceCard = {
                        viewModel.updateCurrentPlace(it)
                        navController.navigate(SolCityScreen.DETAIL_SCREEN.name)

@@ -63,6 +63,71 @@ object Others {
             score = PlaceScore.FOUR,
             contact = "@sunnytree",
             imageRes = R.drawable.waiting_for_place_image
+        ),
+        // Parks
+        Place(
+            name = "Space Between Park",
+            type = PlaceType.OTHER,
+            description = R.string.places_description,
+            score = PlaceScore.FIVE,
+            contact = null,
+            imageRes = R.drawable.waiting_for_place_image
+        ),
+        Place(
+            name = "Park Blues",
+            type = PlaceType.OTHER,
+            description = R.string.places_description,
+            score = PlaceScore.FIVE,
+            contact = null,
+            imageRes = R.drawable.waiting_for_place_image
+        ),
+        Place(
+            name = "Oriol Park",
+            type = PlaceType.OTHER,
+            description = R.string.places_description,
+            score = PlaceScore.FOUR,
+            contact = null,
+            imageRes = R.drawable.waiting_for_place_image
+        ),
+        Place(
+            name = "Park'in'side by side",
+            type = PlaceType.OTHER,
+            description = R.string.places_description,
+            score = PlaceScore.THREE,
+            contact = null,
+            imageRes = R.drawable.waiting_for_place_image
+        ),
+        Place(
+            name = "Another Park",
+            type = PlaceType.OTHER,
+            description = R.string.places_description,
+            score = PlaceScore.TWO,
+            contact = null,
+            imageRes = R.drawable.waiting_for_place_image
+        ),
+        Place(
+            name = "Anderson Park",
+            type = PlaceType.OTHER,
+            description = R.string.places_description,
+            score = PlaceScore.FIVE,
+            contact = null,
+            imageRes = R.drawable.waiting_for_place_image
+        ),
+        Place(
+            name = "Sol's Park",
+            type = PlaceType.OTHER,
+            description = R.string.places_description,
+            score = PlaceScore.ONE,
+            contact = null,
+            imageRes = R.drawable.waiting_for_place_image
+        ),
+        Place(
+            name = "Cat's Park",
+            type = PlaceType.OTHER,
+            description = R.string.places_description,
+            score = PlaceScore.FIVE,
+            contact = null,
+            imageRes = R.drawable.waiting_for_place_image
         )
     )
 
