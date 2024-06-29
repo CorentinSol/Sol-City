@@ -48,15 +48,25 @@ Dynamic color option is disabled.
 
 ### Place List Screen
 
-// TODO : Default Order by what ? Why ? Back button (return select city) ?
-Drawer or Rail and why not button?
-FILTER/ORDER BY button ?
-Card of pic, name, type and score Because ["Cards should be easy to scan for relevant and actionable information."](https://m3.material.io/components/cards/guidelines).
-//TODO
+The list contains card of each place. It only contains a picture of the place, it names, it category and it score because ["Cards should be easy to scan for relevant and actionable information."](https://m3.material.io/components/cards/guidelines).
+Those cards use primaries theme colors because they contains central information.
+Long names are truncated and what can't be shown is replaced with "..." to inform the user the name isn't fully displayed.
+Full name is displayed on the place detail screen.
+
+The default sorting of list screen is by score. The possibility to decide how to sort the list may be implemented in a next version.
+The system back button has the same function as the top bar navigation arrow. It's not disabled because it offers the user the possibility to navigate
+faster, even if it is redundant.
+
+To filter list items, there is a bottom navigation bar. As suggested by [Material 3 guidelines](https://m3.material.io/components/navigation-bar/overview) 
+it must contains a maximum of five choices. Each icon is from [Google Font](https://fonts.google.com/icons) - see [Images Used](https://github.com/CorentinSol/Sol-City#images-used).
+Some of the icon labels aren't fully shown, like "Concert Halls". This is exactly why icons are usefull.
+
+Because `OTHER` places might be categorized, this navigation bar is not the better choice. It is used to fit navigation constraints.
+A modal navigation drawer may have been more appropriated if each `OTHER` place had a precise type.
 
 ### Place Detail Screen
 
-The score is shown with stars icons, making it ["an informative punch into a small form factor"](https://m3.material.io/styles/icons/designing-icons).
+As in the list screen, place's score is shown with stars icons, making it ["an informative punch into a small form factor"](https://m3.material.io/styles/icons/designing-icons).
 First approach there was to display the number of stars corresponding to the score. But even if we might think it's obviously a mark out of five, it might not be.
 The solution was to display five stars on a `primary container color`, which are filled with the `onPrimary container color`, depending on the score value.
 
@@ -80,7 +90,7 @@ the appropriate application. Both of these elements will be implemented later.
 
 //TODO
 
-# Pictures
+# Images Used
 
 //TODO Pictures rights (legal aspect)
 
