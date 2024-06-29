@@ -2,11 +2,10 @@
     <string name="app_name">Sol City App</string>
 
     <!-- Place types related -->
-    <string name="label_all">All places</string>
+    <string name="label_all">All</string>
     <string name="label_bar">Bar</string>
-    <string name="label_concert_hall">Concert Hall</string>
+    <string name="label_concert_hall">Concert</string>
     <string name="label_restaurant">Restaurant</string>
-    <string name="label_university">University</string>
     <string name="label_park">Park</string>
     <string name="label_other">Other</string>
 
@@ -22,7 +21,7 @@
     <string name="accessibility_back_navigation">Go on previous page</string>
 
     <!-- Dev ressources -->
-    <string name="places_description">
+    <string name="places_description" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at magna id eros dictum
         finibus sed eu sapien. Vivamus tristique vehicula felis, non finibus nisl rutrum suscipit.
         Vivamus volutpat at felis ac commodo. Vestibulum pretium sodales nisi, vel consequat eros

@@ -1,27 +1,25 @@
 package initiation.module4.solcity.ui.screen
 
+import android.util.Log
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.twotone.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,11 +31,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import initiation.module4.solcity.R
 import initiation.module4.solcity.data.Place
-import initiation.module4.solcity.data.provider.Bars
-import initiation.module4.solcity.data.provider.ConcertHalls
+import initiation.module4.solcity.data.PlaceType
+import initiation.module4.solcity.ui.utils.BottomBarTypeList
 import initiation.module4.solcity.ui.utils.DrawScoreStars
+import initiation.module4.solcity.ui.utils.PlaceTypeNavigationElements
 
 
 @Composable
@@ -121,28 +121,76 @@ fun PlaceItem(
 }
 
 @Composable
+fun BottomNavigationBarPlacesType(
+    currentTab: PlaceType,
+    navElements: List<PlaceTypeNavigationElements>,
+    onClickOnPlaceTypeIcon: ((PlaceType) -> Unit),
+    modifier: Modifier = Modifier
+) {
+    NavigationBar(modifier = modifier) {
+        for (navItem in navElements) {
+            NavigationBarItem(
+                label = {
+                    Text(
+                        text = navItem.label,
+                        style = MaterialTheme.typography.labelSmall,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                },
+                selected = currentTab == navItem.placeType,
+                onClick = { onClickOnPlaceTypeIcon(navItem.placeType) },
+                icon = {
+                    Icon(
+                        painter = navItem.icon,
+                        contentDescription = stringResource(navItem.placeType.label)
+                    )
+                }
+            )
+        }
+    }
+}
+
+@Composable
 fun PlaceListScreen(
     placeList: List<Place>,
     modifier: Modifier = Modifier,
-    onClick: (Place) -> Unit
+    currentTab: PlaceType,
+    navElements: List<PlaceTypeNavigationElements>,
+    onClickOnPlaceCard: (Place) -> Unit,
+    onClickOnPlaceTypeIcon: ((PlaceType) -> Unit)
 ) {
-    LazyColumn(
-        contentPadding = PaddingValues(dimensionResource(R.dimen.padding_large)),
+    Column(
         modifier = modifier
-            .fillMaxWidth()
+            .fillMaxSize()
     ) {
-        items(placeList) { item ->
-            PlaceItem(
-                place = item,
-                onClick = { onClick(item) }
-            )
+        LazyColumn(
+            contentPadding = PaddingValues(dimensionResource(R.dimen.padding_large)),
+            modifier = Modifier
+                .weight(8F)
+        ) {
+            items(placeList) { item ->
+                PlaceItem(
+                    place = item,
+                    onClick = { onClickOnPlaceCard(item) }
+                )
+            }
         }
-
+        BottomNavigationBarPlacesType(
+            //FIXME Not working
+            currentTab = currentTab,
+            onClickOnPlaceTypeIcon = onClickOnPlaceTypeIcon,
+            navElements = navElements,
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1F)
+        )
     }
+
 }
 
 @Preview
 @Composable
 fun PlaceListScreenPreview() {
-    PlaceListScreen(ConcertHalls.getAllConcertHalls(), onClick = { })
+  //  PlaceListScreen(ConcertHalls.getAllConcertHalls(), onClick = { })
 }

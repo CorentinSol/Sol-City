@@ -1,5 +1,6 @@
 package initiation.module4.solcity.ui
 
+import android.util.Log
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -22,12 +23,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import initiation.module4.solcity.R
-import initiation.module4.solcity.data.Place
-import initiation.module4.solcity.data.provider.ConcertHalls
-import initiation.module4.solcity.data.provider.DefaultPlace
+import initiation.module4.solcity.data.PlaceType
 import initiation.module4.solcity.ui.screen.HomeScreen
 import initiation.module4.solcity.ui.screen.PlaceDetailScreen
 import initiation.module4.solcity.ui.screen.PlaceListScreen
+import initiation.module4.solcity.ui.utils.BottomBarTypeList
 
 enum class SolCityScreen {
     HOME_SCREEN, LIST_SCREEN, DETAIL_SCREEN
@@ -76,19 +76,23 @@ fun CityAppScreen(
         backStackEntry?.destination?.route ?: SolCityScreen.HOME_SCREEN.toString()
     )
 
+    val navElements = BottomBarTypeList.navigationBottomBarTypeList()
+
     Scaffold(
         topBar = {
             SolCityTopAppBar(
                 //FIXME List name
-                pageTitle =  when(currentScreen) {
+                pageTitle = when(currentScreen) {
                     SolCityScreen.valueOf(SolCityScreen.LIST_SCREEN.name)
-                        -> solCityUiState.currentTypeListName
+                    -> stringResource(solCityUiState.currentPlaceType.label)
+
                     SolCityScreen.valueOf(SolCityScreen.DETAIL_SCREEN.name)
-                        -> solCityUiState.currentSelectedPlace.name
+                    -> solCityUiState.currentPlace.name
+
                     else -> stringResource(R.string.app_name)
                 },
-                    canNavigateBack = navController.previousBackStackEntry != null,
-                    navigateUp = { navController.navigateUp() }
+                canNavigateBack = navController.previousBackStackEntry != null,
+                navigateUp = { navController.navigateUp() }
             )
         }
     ) { innerPadding ->
@@ -106,16 +110,21 @@ fun CityAppScreen(
             }
             composable(route = SolCityScreen.LIST_SCREEN.name) {
                 PlaceListScreen(
+                    currentTab = solCityUiState.currentPlaceType,
                     placeList = solCityUiState.currentPlaceList,
-                    onClick = {
+                    onClickOnPlaceCard = {
                        viewModel.updateCurrentPlace(it)
                        navController.navigate(SolCityScreen.DETAIL_SCREEN.name)
+                    },
+                    navElements = navElements,
+                    onClickOnPlaceTypeIcon = { placeTypeClicked: PlaceType ->
+                        viewModel.onPlaceTypeIconClicked(placeTypeClicked = placeTypeClicked)
                     }
                 )
             }
             composable(route = SolCityScreen.DETAIL_SCREEN.name) {
                 PlaceDetailScreen(
-                    place = solCityUiState.currentSelectedPlace
+                    place = solCityUiState.currentPlace
                 )
             }
         }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sol City App</string>
+    <string name="label_all">Tous</string>
+    <string name="label_bar">Bar</string>
+    <string name="label_concert_hall">Concert</string>
+    <string name="label_restaurant">Restaurant</string>
+    <string name="label_park">Parc</string>
+    <string name="label_other">Autre</string>
+    <string name="in_construction">En construction, revenez plus tard</string>
+    <string name="label_working_on">En travaux</string>
+    <string name="default_contact">mail@contact.com</string>
+    <string name="accessibility_waiting_place_picture">En attente d\'une image du lieu</string>
+    <string name="accessibility_contact">Icone de contact</string>
+    <string name="accessibility_score">Le score du lieu est de %d sur cinq</string>
+    <string name="accessibility_back_navigation">Retourner à la page précédente</string>
+</resources>

@@ -5,7 +5,8 @@ It's build entirely with Kotlin and Jetpack Compose and tries to follow the Andr
 
 # Features
 
-Users can navigate between few tabs to discover mutiple places of Sol - which is a fictional city. 
+Users can navigate between few tabs to discover multiple places of Sol - which is a fictional city.
+The app is available in english and in french.
 
 ## Screenshots
 
@@ -45,7 +46,7 @@ Dynamic color option is disabled.
 
 ## Compact
 
-### City Home Screen
+### Place List Screen
 
 // TODO : Default Order by what ? Why ? Back button (return select city) ?
 Drawer or Rail and why not button?
@@ -53,7 +54,7 @@ FILTER/ORDER BY button ?
 Card of pic, name, type and score Because ["Cards should be easy to scan for relevant and actionable information."](https://m3.material.io/components/cards/guidelines).
 //TODO
 
-### Place Details Screen
+### Place Detail Screen
 
 The score is shown with stars icons, making it ["an informative punch into a small form factor"](https://m3.material.io/styles/icons/designing-icons).
 First approach there was to display the number of stars corresponding to the score. But even if we might think it's obviously a mark out of five, it might not be.
@@ -84,6 +85,16 @@ the appropriate application. Both of these elements will be implemented later.
 //TODO Pictures rights (legal aspect)
 
 The drawable [waiting_for_place_image](https://github.com/CorentinSol/Sol-City/blob/main/app/src/main/res/drawable/waiting_for_place_image.JPG) is property of Corentin Solignac. No copy allowed. 
+
+Icons in all navigation layouts - bottom navigation bar and drawers - are from [Google Font](https://fonts.google.com/icons). They are:
+<ul>
+    <li><a href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:density_small:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=density+small&icon.size=24&icon.color=%23e8eaed&icon.platform=android">density_small</a></li>
+    <li><a href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:more_horiz:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=more+horiz&icon.size=24&icon.color=%23e8eaed&icon.platform=android">more_horiz</a></li>
+    <li><a href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:music_note:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=music+note&icon.size=24&icon.color=%23e8eaed&icon.platform=android">music_note</a></li>
+    <li><a href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:park:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=park&icon.size=24&icon.color=%23e8eaed&icon.platform=android">park</a></li>
+    <li><a href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:restaurant:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=restaurant&icon.size=24&icon.color=%23e8eaed&icon.platform=android">restaurant</a></li>
+    <li><a href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:sports_bar:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=sports+bar&icon.size=24&icon.color=%23e8eaed&icon.platform=android">sports_bar</a></li>
+</ul>
 
 # Comment about places information
 
