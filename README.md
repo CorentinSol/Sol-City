@@ -58,7 +58,7 @@ The system back button has the same function as the top bar navigation arrow. It
 faster, even if it is redundant.
 
 To filter list items, there is a bottom navigation bar. As suggested by [Material 3 guidelines](https://m3.material.io/components/navigation-bar/overview) 
-it must contains a maximum of five choices. Each icon is from [Google Font](https://fonts.google.com/icons) - see [Images Used](https://github.com/CorentinSol/Sol-City#images-used).
+it must contains a maximum of five choices. Each icon is from [Google Font](https://fonts.google.com/icons) - see [Images Used](https://github.com/CorentinSol/Sol-City?tab=readme-ov-file#images-used).
 Some of the icon labels aren't fully shown, like "Concert Halls". This is exactly why icons are usefull.
 
 Because `OTHER` places might be categorized, this navigation bar is not the better choice. It is used to fit navigation constraints.
