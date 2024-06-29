@@ -8,11 +8,17 @@
     <string name="label_restaurant">Restaurant</string>
     <string name="label_park">Park</string>
     <string name="label_other">Other</string>
+    <string name="category_bars">Bars</string>
+    <string name="category_concert_halls">Concert Halls</string>
+    <string name="category_restaurants">Restaurants</string>
+    <string name="category_parks">Parks</string>
+    <string name="category_others">Others</string>
 
     <!-- Default or working on values -->
     <string name="in_construction">In construction, come back later</string>
     <string name="label_working_on">Working On</string>
     <string name="default_contact">mail@contact.com</string>
+    <string name="no_contact_information">No contact information available</string>
 
     <!-- Accessibility resources -->
     <string name="accessibility_waiting_place_picture">Waiting for a place picture</string>

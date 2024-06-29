@@ -144,7 +144,7 @@ fun PlaceContactInformation(
                     .padding(end = dimensionResource(R.dimen.padding_medium))
             )
             Text(
-                text = place.contact,
+                text = place?.contact ?: stringResource(R.string.no_contact_information),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onPrimaryContainer
             )
@@ -175,9 +175,11 @@ fun PlaceDetailScreen(
             PlaceDescription(
                 place = place
             )
-            PlaceContactInformation(
-                place = place
-            )
+            if (place.contact != null) {
+                PlaceContactInformation(
+                    place = place
+                )
+            }
         }
     }
 }

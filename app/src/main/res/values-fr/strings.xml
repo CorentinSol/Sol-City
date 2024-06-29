@@ -14,4 +14,10 @@
     <string name="accessibility_contact">Icone de contact</string>
     <string name="accessibility_score">Le score du lieu est de %d sur cinq</string>
     <string name="accessibility_back_navigation">Retourner à la page précédente</string>
+    <string name="no_contact_information">Aucun moyen de contact siponible</string>
+    <string name="category_others">Autres</string>
+    <string name="category_parks">Parcs</string>
+    <string name="category_restaurants">Restaurants</string>
+    <string name="category_concert_halls">Salles de concerts</string>
+    <string name="category_bars">Bars</string>
 </resources>

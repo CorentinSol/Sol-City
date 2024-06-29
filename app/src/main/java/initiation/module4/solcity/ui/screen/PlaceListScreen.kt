@@ -132,7 +132,7 @@ fun BottomNavigationBarPlacesType(
             NavigationBarItem(
                 label = {
                     Text(
-                        text = navItem.label,
+                        text = stringResource(navItem.placeType.category),
                         style = MaterialTheme.typography.labelSmall,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
