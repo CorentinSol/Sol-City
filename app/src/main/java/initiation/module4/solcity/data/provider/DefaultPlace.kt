@@ -19,6 +19,10 @@ object DefaultPlace {
 
     fun getDefaultPlaceList() : List<Place> {
         // FIXME Add each category
-        return Bars.getAllBars() + ConcertHalls.getAllConcertHalls()
+        return Bars.getAllBars() +
+            ConcertHalls.getAllConcertHalls() +
+            Restaurants.getAllRestaurants() +
+            Parks.getAllParks() +
+            Others.getAllOthers()
     }
 }

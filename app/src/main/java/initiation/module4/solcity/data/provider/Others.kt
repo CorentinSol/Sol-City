@@ -5,68 +5,68 @@ import initiation.module4.solcity.data.Place
 import initiation.module4.solcity.data.PlaceScore
 import initiation.module4.solcity.data.PlaceType
 
-object Parks {
-    private val allParks : List<Place> = listOf(
+object Others {
+
+    private val allOthers : List<Place> = listOf(
         Place(
-            name = "Space Between Park",
-            type = PlaceType.PARK,
+            name = "Another One (Another \"Another\")",
+            type = PlaceType.OTHER,
             description = R.string.places_description,
             score = PlaceScore.FIVE,
             contact = null,
             imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
-            name = "Park Blues",
-            type = PlaceType.PARK,
+            name = "Bird's University (aka Oriol)",
+            type = PlaceType.OTHER,
             description = R.string.places_description,
             score = PlaceScore.FIVE,
-            contact = null,
+            contact = "oriol@university.com",
             imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
-            name = "Oriol Park",
-            type = PlaceType.PARK,
+            name = "Jazz Other",
+            type = PlaceType.OTHER,
             description = R.string.places_description,
             score = PlaceScore.FOUR,
-            contact = null,
+            contact = "@jazzOther",
             imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
-            name = "Park'in'side by side",
-            type = PlaceType.PARK,
+            name = "Mosquito Pound",
+            type = PlaceType.OTHER,
             description = R.string.places_description,
             score = PlaceScore.THREE,
             contact = null,
             imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
-            name = "Another Park",
-            type = PlaceType.PARK,
+            name = "Cat, her Pillar",
+            type = PlaceType.OTHER,
             description = R.string.places_description,
             score = PlaceScore.TWO,
-            contact = null,
+            contact = "+33622222222",
             imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
-            name = "Sol's Park",
-            type = PlaceType.PARK,
+            name = "The Tree of Books",
+            type = PlaceType.OTHER,
             description = R.string.places_description,
             score = PlaceScore.ONE,
-            contact = null,
+            contact = "+33611111111",
             imageRes = R.drawable.waiting_for_place_image
         ),
         Place(
-            name = "Cat's Park",
-            type = PlaceType.PARK,
+            name = "Sunny Tree",
+            type = PlaceType.OTHER,
             description = R.string.places_description,
             score = PlaceScore.FOUR,
-            contact = null,
+            contact = "@sunnytree",
             imageRes = R.drawable.waiting_for_place_image
         )
     )
 
-
-    fun getAllParks() : List<Place> {
-        return allParks
+    fun getAllOthers() : List<Place> {
+        return allOthers
     }
 }
