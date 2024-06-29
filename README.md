@@ -39,8 +39,8 @@ Dynamic color option is disabled.
 
 ## Navigation 
 
-//TODO => Using the Jetpack Navigation component (where ?)
-//TODO "Select your city" as home screen => even if just one, to add screens to Navigation
+Navigation is managed by the [Navigation framework](https://developer.android.com/jetpack/androidx/releases/navigation) to fit the constraint.
+The app home page, where the user selects the city, was implemented to add a new route in the application.
 
 # Adaptive Layouts
 
@@ -94,7 +94,7 @@ the appropriate application. Both of these elements will be implemented later.
 
 //TODO Pictures rights (legal aspect)
 
-The drawable [waiting_for_place_image](https://github.com/CorentinSol/Sol-City/blob/main/app/src/main/res/drawable/waiting_for_place_image.JPG) is property of Corentin Solignac. No copy allowed. 
+The drawable [waiting_for_place_image](https://github.com/CorentinSol/Sol-City/blob/main/app/src/main/res/drawable/waiting_for_place_image.jpg) is property of Corentin Solignac. No copy allowed. 
 
 Icons in all navigation layouts - bottom navigation bar and drawers - are from [Google Font](https://fonts.google.com/icons). They are:
 <ul>
@@ -108,4 +108,5 @@ Icons in all navigation layouts - bottom navigation bar and drawers - are from [
 
 # Comment about places information
 
-None of the place used in this application is meant to be an existing one, and every contact information (phonenumbers, emails and @) are fictive. Let me know if any of these information causes any problem to change them.
+None of the place used in this application is meant to be an existing one, and every contact information (phonenumbers, emails and @) are fictive.
+Let me know if any of these information causes any problem, to change them.
