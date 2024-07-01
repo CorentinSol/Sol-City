@@ -30,7 +30,6 @@ import androidx.compose.ui.unit.dp
 import initiation.module4.solcity.data.Place
 import initiation.module4.solcity.ui.theme.SolCityTheme
 import initiation.module4.solcity.R
-import initiation.module4.solcity.data.provider.Bars
 import initiation.module4.solcity.ui.utils.DrawScoreStars
 
 @Composable
@@ -144,7 +143,7 @@ fun PlaceContactInformation(
                     .padding(end = dimensionResource(R.dimen.padding_medium))
             )
             Text(
-                text = place?.contact ?: stringResource(R.string.no_contact_information),
+                text = place.contact ?: stringResource(R.string.no_contact_information),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onPrimaryContainer
             )
@@ -153,8 +152,34 @@ fun PlaceContactInformation(
 }
 
 @Composable
+fun PlaceNameCard(
+    place: Place,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        elevation = CardDefaults.elevatedCardElevation(dimensionResource(R.dimen.padding_large)),
+        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primaryContainer),
+        modifier = modifier
+            .padding(bottom = dimensionResource(R.dimen.padding_medium))
+    ) {
+        Text(
+            text = place.name,
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            style = MaterialTheme.typography.titleLarge,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .padding(
+                    horizontal = dimensionResource(R.dimen.padding_medium),
+                    vertical = dimensionResource(R.dimen.padding_small)
+                )
+        )
+    }
+}
+
+@Composable
 fun PlaceDetailScreen(
     place: Place,
+    needShowPlaceName: Boolean,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -166,6 +191,11 @@ fun PlaceDetailScreen(
             modifier = Modifier
                 .verticalScroll(state = rememberScrollState())
         ) {
+            if (needShowPlaceName) {
+                PlaceNameCard(
+                    place = place
+                )
+            }
             PlaceDetailImage(
                 place = place
             )
@@ -188,6 +218,6 @@ fun PlaceDetailScreen(
 @Composable
 fun PlaceDetailScreenPreview() {
     SolCityTheme {
-        PlaceDetailScreen(Bars.getAllBars().get(0))
+    //    PlaceDetailScreen(Bars.getAllBars().get(0))
     }
 }

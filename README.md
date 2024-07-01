@@ -78,9 +78,20 @@ the appropriate application. Both of these elements will be implemented later.
 
 ## Medium
 
+
 //TODO
 
 ## Extended
+Navigation component used here is a [navigation rail](https://m3.material.io/components/navigation-rail), and both the list of places and the detail pane are displayed 
+at the same time. This way, all space available is used to optimize the user experience.
+
+To inform the user which place he selected, the corresponding card is set to the `primaryContainer` color.
+Also, the selected place's name is displayed on top of the detail part of the screen.
+It prevents long names being cut in the list view.
+
+The part of the screen displaying all details about a place has a different background color - `inversePrimary` -
+and a rounded corner shape reminding a card, to help the user distinguish
+each part of the screen.
 
 //TODO
 

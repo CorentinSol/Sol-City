@@ -1,6 +1,5 @@
 package initiation.module4.solcity.ui.screen
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,26 +18,23 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.max
 import initiation.module4.solcity.R
 import initiation.module4.solcity.data.Place
 import initiation.module4.solcity.data.PlaceType
-import initiation.module4.solcity.ui.utils.BottomBarTypeList
 import initiation.module4.solcity.ui.utils.DrawScoreStars
 import initiation.module4.solcity.ui.utils.PlaceTypeNavigationElements
-
 
 @Composable
 fun PlaceItemLabel(
@@ -54,7 +50,6 @@ fun PlaceItemLabel(
             text = stringResource(place.type.label),
             modifier = Modifier
                 .padding(end = dimensionResource(R.dimen.padding_large))
-              //  .weight(1F)
         )
         Row(
             horizontalArrangement = Arrangement.End,
@@ -76,12 +71,30 @@ fun PlaceItemLabel(
 @Composable
 fun PlaceItem(
     place: Place,
+    isCurrentPlace: Boolean,
+    needsSelectedCardColor: Boolean,
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
+    val cardColor = if (isCurrentPlace) {
+        CardDefaults.cardColors(MaterialTheme.colorScheme.primaryContainer)
+    } else {
+        CardDefaults.cardColors(MaterialTheme.colorScheme.primary)
+    }
+
+    val textColor = if (isCurrentPlace) {
+        MaterialTheme.colorScheme.onPrimaryContainer
+    } else {
+        MaterialTheme.colorScheme.onPrimary
+    }
+
     Card(
         onClick = onClick,
-        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.primary),
+        colors = if (needsSelectedCardColor) {
+                cardColor
+            } else {
+                CardDefaults.cardColors(MaterialTheme.colorScheme.primary)
+        },
         elevation = CardDefaults.elevatedCardElevation(4.dp),
         modifier = modifier
             .padding(vertical = dimensionResource(R.dimen.padding_small))
@@ -96,8 +109,10 @@ fun PlaceItem(
             Image(
                 painter = painterResource(place.imageRes),
                 contentDescription = null,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .weight(1F)
+                    .padding(dimensionResource(R.dimen.padding_small))
                     .clip(CardDefaults.shape)
             )
             Column(
@@ -107,6 +122,11 @@ fun PlaceItem(
             ){
                 Text(
                     text = place.name,
+                    color = if (needsSelectedCardColor) {
+                        textColor
+                    } else {
+                        MaterialTheme.colorScheme.onPrimary
+                    },
                     style = MaterialTheme.typography.titleLarge,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -153,7 +173,9 @@ fun BottomNavigationBarPlacesType(
 
 @Composable
 fun PlaceListScreen(
+    showBottomNavBar: Boolean,
     placeList: List<Place>,
+    selectedPlace: Place,
     modifier: Modifier = Modifier,
     currentTab: PlaceType,
     navElements: List<PlaceTypeNavigationElements>,
@@ -172,21 +194,23 @@ fun PlaceListScreen(
             items(placeList) { item ->
                 PlaceItem(
                     place = item,
+                    needsSelectedCardColor = !showBottomNavBar, // Same screen size criteria
+                    isCurrentPlace = item == selectedPlace,
                     onClick = { onClickOnPlaceCard(item) }
                 )
             }
         }
-        BottomNavigationBarPlacesType(
-            //FIXME Not working
-            currentTab = currentTab,
-            onClickOnPlaceTypeIcon = onClickOnPlaceTypeIcon,
-            navElements = navElements,
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1F)
-        )
+        if (showBottomNavBar) {
+            BottomNavigationBarPlacesType(
+                currentTab = currentTab,
+                onClickOnPlaceTypeIcon = onClickOnPlaceTypeIcon,
+                navElements = navElements,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1F)
+            )
+        }
     }
-
 }
 
 @Preview

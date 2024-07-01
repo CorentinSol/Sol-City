@@ -10,15 +10,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
-import initiation.module4.solcity.R
 import initiation.module4.solcity.ui.SolCityScreen
+import initiation.module4.solcity.ui.utils.SolCityNavigationType
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    navController: NavController
+    navController: NavController,
+    navigationType: SolCityNavigationType
 ) {
     val context = LocalContext.current
     val toastOtherCity = { text: String ->
@@ -31,7 +31,18 @@ fun HomeScreen(
             .fillMaxWidth()
     ) {
         Button(
-            onClick = { navController.navigate(SolCityScreen.LIST_SCREEN.toString()) }
+            onClick = {
+                when(navigationType) {
+                    SolCityNavigationType.BOTTOM_NAVIGATION ->
+                        { navController.navigate(SolCityScreen.LIST_SCREEN.toString()) }
+                    // TODO Navigation rail
+                    SolCityNavigationType.PERMANENT_NAVIGATION_DRAWER ->
+                        { navController.navigate(SolCityScreen.LIST_AND_DETAILS.toString()) }
+                    else -> // Other
+                    { navController.navigate(SolCityScreen.LIST_SCREEN.toString()) }
+                }
+            }
+
         ) {
             Text(text = "SolCity")
         }
