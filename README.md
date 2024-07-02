@@ -41,6 +41,7 @@ Defaults Jetpack Compose fonts are used.
 
 Navigation is managed by the [Navigation framework](https://developer.android.com/jetpack/androidx/releases/navigation) to fit the constraint.
 The app home page, where the user selects the city, was implemented to add a new route in the application.
+No user experience work was done on this screen.
 
 # Adaptive Layouts
 
