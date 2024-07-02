@@ -3,7 +3,6 @@ package initiation.module4.solcity
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import initiation.module4.solcity.ui.CityAppScreen
@@ -13,7 +12,6 @@ import initiation.module4.solcity.ui.utils.SolCityNavigationType
 @Composable
 fun SolCityApp(
     windowSize: WindowWidthSizeClass,
-    modifier: Modifier = Modifier
 ) {
     val viewModel:SolCityViewModel = viewModel()
     val solCityUiState = viewModel.uiState.collectAsState().value
@@ -23,15 +21,15 @@ fun SolCityApp(
             navigationType = SolCityNavigationType.BOTTOM_NAVIGATION
         }
         WindowWidthSizeClass.Medium -> {
-            navigationType = SolCityNavigationType.NAVIGATION_RAIL
+            navigationType = SolCityNavigationType.MODAL_NAVIGATION_DRAWER
         }
         WindowWidthSizeClass.Expanded -> {
-            navigationType = SolCityNavigationType.PERMANENT_NAVIGATION_DRAWER
+            navigationType = SolCityNavigationType.MODAL_NAVIGATION_DRAWER
         } else -> {
         navigationType = SolCityNavigationType.BOTTOM_NAVIGATION
         }
     }
-    // FIXME Landscape in compact
+    // FIXME Landscape in compact doesn't recompose
     CityAppScreen(
         navigationType = navigationType,
         viewModel = viewModel,

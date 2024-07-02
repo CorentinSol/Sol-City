@@ -34,15 +34,11 @@ fun HomeScreen(
             onClick = {
                 when(navigationType) {
                     SolCityNavigationType.BOTTOM_NAVIGATION ->
-                        { navController.navigate(SolCityScreen.LIST_SCREEN.toString()) }
-                    // TODO Navigation rail
-                    SolCityNavigationType.PERMANENT_NAVIGATION_DRAWER ->
-                        { navController.navigate(SolCityScreen.LIST_AND_DETAILS.toString()) }
-                    else -> // Other
-                    { navController.navigate(SolCityScreen.LIST_SCREEN.toString()) }
+                        { navController.navigate(SolCityScreen.LIST_SCREEN.name) }
+                    SolCityNavigationType.MODAL_NAVIGATION_DRAWER ->
+                        { navController.navigate(SolCityScreen.LIST_AND_DETAILS.name) }
                 }
             }
-
         ) {
             Text(text = "SolCity")
         }

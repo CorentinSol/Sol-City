@@ -1,7 +1,7 @@
 # Sol City
 
-**Sol City** is the final projet of the third pathway of the fourth module of the [Android Basics with Compose](https://developer.android.com/codelabs/basic-android-kotlin-compose-my-city?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-compose-unit-4-pathway-3%3Fhl%3Dfr%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-my-city#0) course.
-It's build entirely with Kotlin and Jetpack Compose and tries to follow the Android [design](https://m3.material.io/) and development best pratices
+**Sol City** is the final project of the third pathway of the fourth module of the [Android Basics with Compose](https://developer.android.com/codelabs/basic-android-kotlin-compose-my-city?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-compose-unit-4-pathway-3%3Fhl%3Dfr%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-compose-my-city#0) course.
+It's build entirely with Kotlin and Jetpack Compose and tries to follow the Android [design](https://m3.material.io/) and development best practices
 
 # Features
 
@@ -35,7 +35,7 @@ Dynamic color option is disabled.
 
 ## Fonts
 
-//TODO
+Defaults Jetpack Compose fonts are used.
 
 ## Navigation 
 
@@ -59,7 +59,7 @@ faster, even if it is redundant.
 
 To filter list items, there is a bottom navigation bar. As suggested by [Material 3 guidelines](https://m3.material.io/components/navigation-bar/overview) 
 it must contains a maximum of five choices. Each icon is from [Google Font](https://fonts.google.com/icons) - see [Images Used](https://github.com/CorentinSol/Sol-City?tab=readme-ov-file#images-used).
-Some of the icon labels aren't fully shown, like "Concert Halls". This is exactly why icons are usefull.
+Some of the icon labels aren't fully shown, like "Concert Halls". This is exactly why icons are useful.
 
 Because `OTHER` places might be categorized, this navigation bar is not the better choice. It is used to fit navigation constraints.
 A modal navigation drawer may have been more appropriated if each `OTHER` place had a precise type.
@@ -76,24 +76,31 @@ Contact information are at the end of the page because in a real-world implement
 Actually, the contact icon is an envelope no matter the type of contact it is, but it should depend on the media. This card should be clickable to open
 the appropriate application. Both of these elements will be implemented later.
 
-## Medium
+Both the Place Detail Screen and the Place List Screen doesn't recompose properly when switching from portrait mode to landscape.
+User has to go back on Home Screen to rotate his device to make the application recompose properly.
+Based on some research, coroutines might be a clue to solve this issue. Because they're on the fifth module, this bug is not fixed yet
+and will probably not be.
 
+## Medium and Extended
 
-//TODO
+Navigation components used here are a [navigation rail](https://m3.material.io/components/navigation-rail)
+and a [modal navigation drawer](https://m3.material.io/components/navigation-drawer).
+By using those two navigation components, displayed information are the same for both medium and 
+extended screen sized.
+The navigation drawer doesn't allow gesture because a button is always displayed in the navigation 
+rail. 
+This way, inexperienced users doesn't doubt about if there is any difference between gesture 
+navigation or button navigation.
 
-## Extended
-Navigation component used here is a [navigation rail](https://m3.material.io/components/navigation-rail), and both the list of places and the detail pane are displayed 
-at the same time. This way, all space available is used to optimize the user experience.
+The list of places and the detail pane are displayed at the same time. 
+This way, all space available is used to optimize the user experience.
 
 To inform the user which place he selected, the corresponding card is set to the `primaryContainer` color.
 Also, the selected place's name is displayed on top of the detail part of the screen.
-It prevents long names being cut in the list view.
+It prevents long names being cut in the list of places.
 
 The part of the screen displaying all details about a place has a different background color - `inversePrimary` -
-and a rounded corner shape reminding a card, to help the user distinguish
-each part of the screen.
-
-//TODO
+and a rounded corner shape reminding a card, to help the user distinguish each part of the screen.
 
 ## View Model
 
@@ -103,13 +110,12 @@ each part of the screen.
 
 # Images Used
 
-//TODO Pictures rights (legal aspect)
-
 The drawable [waiting_for_place_image](https://github.com/CorentinSol/Sol-City/blob/main/app/src/main/res/drawable/waiting_for_place_image.jpg) is property of Corentin Solignac. No copy allowed. 
 
-Icons in all navigation layouts - bottom navigation bar and drawers - are from [Google Font](https://fonts.google.com/icons). They are:
+Icons in all navigation layouts - bottom navigation bar, rail and drawer - are from [Google Font](https://fonts.google.com/icons). They are:
 <ul>
     <li><a href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:density_small:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=density+small&icon.size=24&icon.color=%23e8eaed&icon.platform=android">density_small</a></li>
+    <li><a href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:select_all:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%23e8eaed&icon.platform=web">select_all</a></li>
     <li><a href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:more_horiz:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=more+horiz&icon.size=24&icon.color=%23e8eaed&icon.platform=android">more_horiz</a></li>
     <li><a href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:music_note:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=music+note&icon.size=24&icon.color=%23e8eaed&icon.platform=android">music_note</a></li>
     <li><a href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:park:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=park&icon.size=24&icon.color=%23e8eaed&icon.platform=android">park</a></li>
@@ -119,5 +125,5 @@ Icons in all navigation layouts - bottom navigation bar and drawers - are from [
 
 # Comment about places information
 
-None of the place used in this application is meant to be an existing one, and every contact information (phonenumbers, emails and @) are fictive.
+None of the place used in this application is meant to be an existing one, and every contact information (phone numbers, emails and @) are fictive.
 Let me know if any of these information causes any problem, to change them.

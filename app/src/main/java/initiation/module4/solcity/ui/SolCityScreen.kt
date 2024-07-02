@@ -1,17 +1,26 @@
 package initiation.module4.solcity.ui
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.DrawerState
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.PermanentDrawerSheet
-import androidx.compose.material3.PermanentNavigationDrawer
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationRail
+import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -21,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -34,6 +44,7 @@ import initiation.module4.solcity.ui.screen.HomeScreen
 import initiation.module4.solcity.ui.screen.PlaceDetailScreen
 import initiation.module4.solcity.ui.screen.PlaceListScreen
 import initiation.module4.solcity.ui.utils.BottomBarTypeList
+import initiation.module4.solcity.ui.utils.BottomBarTypeList.navigationDrawerTypeList
 import initiation.module4.solcity.ui.utils.PlaceTypeNavigationElements
 import initiation.module4.solcity.ui.utils.SolCityNavigationType
 
@@ -73,12 +84,14 @@ fun SolCityTopAppBar(
 
 @Composable
 fun SolCityNavigationDrawerHeader() {
-    //TODO
-}
-
-@Composable
-fun SolCityNavigationDrawerItem() {
-    //TODO
+    Text(
+        text = stringResource(R.string.app_name),
+        textAlign = TextAlign.Center,
+        style = MaterialTheme.typography.titleMedium,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = dimensionResource(R.dimen.padding_large))
+    )
 }
 
 @Composable
@@ -90,51 +103,118 @@ fun SolCityListAndDetails(
     navElements: List<PlaceTypeNavigationElements>,
     onClickOnPlaceCard: (Place) -> Unit,
     onClickOnPlaceTypeIcon: (PlaceType) -> Unit,
+    onClickOnOpenNavDrawer: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-        Row(modifier = modifier) {
-            PlaceListScreen(
-                showBottomNavBar = false,
-                selectedPlace = selectedPlace,
-                placeList = placeList,
-                currentTab = currentTab,
-                navElements = navElements,
-                onClickOnPlaceCard = onClickOnPlaceCard,
-                onClickOnPlaceTypeIcon = onClickOnPlaceTypeIcon,
-                modifier = Modifier.weight(2F)
-            )
-            Surface(
-                color = MaterialTheme.colorScheme.inversePrimary,
-                shape = CardDefaults.shape,
-                modifier = Modifier
-                    .weight(2F)
-                    .padding(dimensionResource(R.dimen.padding_large))
-            ) {
+
+    Row(modifier = modifier) {
+        SolCityModalNavigationRail(
+            currentPlaceType = currentTab,
+            onClickOnPlaceTypeIcon = onClickOnPlaceTypeIcon,
+            onClickOnOpenNavDrawer = onClickOnOpenNavDrawer
+        )
+        PlaceListScreen(
+            showBottomNavBar = false,
+            selectedPlace = selectedPlace,
+            placeList = placeList,
+            currentTab = currentTab,
+            navElements = navElements,
+            onClickOnPlaceCard = onClickOnPlaceCard,
+            onClickOnPlaceTypeIcon = onClickOnPlaceTypeIcon,
+            modifier = Modifier.weight(2F)
+        )
+        Surface(
+            color = MaterialTheme.colorScheme.inversePrimary,
+            shape = CardDefaults.shape,
+            modifier = Modifier
+                .weight(2F)
+                .padding(dimensionResource(R.dimen.padding_large))
+        ) {
             PlaceDetailScreen(
                 place = selectedPlace,
-                needShowPlaceName = needShowPlaceName,
-
+                needShowPlaceName = needShowPlaceName
             )
         }
     }
-
 }
 
 @Composable
-fun SolCityPermanentNavigationDrawer() {
-    PermanentNavigationDrawer(
+fun SolCityModalNavigationRail(
+    currentPlaceType: PlaceType,
+    onClickOnPlaceTypeIcon: (PlaceType) -> Unit,
+    onClickOnOpenNavDrawer: () -> Unit
+) {
+    NavigationRail {
+        // Button to open the modal drawer
+        NavigationRailItem(
+            selected = false,
+            onClick = onClickOnOpenNavDrawer,
+            icon = {
+                //FIXME ALL icon to change for less ambiguities
+                Icon(
+                    imageVector = Icons.Default.Menu,
+                    contentDescription = null
+                )
+            }
+        )
+        navigationDrawerTypeList().forEach { railItem ->
+            NavigationRailItem(
+                selected = railItem.placeType == currentPlaceType,
+                onClick = { onClickOnPlaceTypeIcon(railItem.placeType) },
+                icon = { Icon(painter = railItem.icon, contentDescription = null) }
+            )
+        }
+    }
+}
+
+@Composable
+fun SolCityModalNavigationDrawer(
+    currentPlaceType: PlaceType,
+    drawerState: DrawerState,
+    onClickOnPlaceTypeIcon: (PlaceType) -> Unit,
+    content: @Composable () -> Unit
+) {
+    ModalNavigationDrawer(
+        drawerState = drawerState,
+        gesturesEnabled = false,
         drawerContent = {
-            PermanentDrawerSheet(
-                //TODO Width
-                drawerContentColor = MaterialTheme.colorScheme.inverseOnSurface
+            ModalDrawerSheet(
+                modifier = Modifier.width(dimensionResource(R.dimen.modal_drawer_width))
             ) {
                 SolCityNavigationDrawerHeader()
+                HorizontalDivider()
+
+                //FIXME not super clean solution to get "all" the first element
+                navigationDrawerTypeList().forEach { navItem ->
+                    NavigationDrawerItem(
+                        label = { Text(text = navItem.label) },
+                        icon = { Icon(painter = navItem.icon, contentDescription = null)},
+                        selected = navItem.placeType == currentPlaceType,
+                        onClick = { onClickOnPlaceTypeIcon(navItem.placeType) }
+                    )
+                }
             }
         }
     ) {
-        
+        content()
     }
 }
+
+//@Composable
+//fun SolCityPermanentNavigationDrawer() {
+//    PermanentNavigationDrawer(
+//        drawerContent = {
+//            PermanentDrawerSheet(
+//                //TODO Width
+//                drawerContentColor = MaterialTheme.colorScheme.inverseOnSurface
+//            ) {
+//                SolCityNavigationDrawerHeader()
+//            }
+//        }
+//    ) {
+//
+//    }
+//}
 
 @Composable
 fun CityAppScreen(
@@ -213,20 +293,36 @@ fun CityAppScreen(
                 )
             }
             composable(route = SolCityScreen.LIST_AND_DETAILS.name) {
-                SolCityListAndDetails(
-                    placeList = solCityUiState.currentPlaceList.sortedBy {
-                        it.score.value
-                    }.reversed(),
-                    needShowPlaceName = true,
-                    currentTab = solCityUiState.currentPlaceType,
-                    selectedPlace = solCityUiState.currentPlace,
-                    navElements = navElements,
-                    onClickOnPlaceCard = { newPlace: Place ->
-                        viewModel.updateCurrentPlace(newPlace) },
+             //   var isDrawerOpen by remember { mutableStateOf(false) }
+                SolCityModalNavigationDrawer(
+                    currentPlaceType = solCityUiState.currentPlaceType,
+                    drawerState =
+                    if (solCityUiState.isDrawerOpen) {
+                        DrawerState(DrawerValue.Open)
+                    } else {
+                        DrawerState(DrawerValue.Closed)
+                    },
                     onClickOnPlaceTypeIcon = { placeTypeClicked: PlaceType ->
                         viewModel.onPlaceTypeIconClicked(placeTypeClicked = placeTypeClicked)
+                        viewModel.updateIsDrawerOpen(false)
                     }
-                )
+                ) {
+                    SolCityListAndDetails(
+                        placeList = solCityUiState.currentPlaceList.sortedBy {
+                            it.score.value
+                        }.reversed(),
+                        needShowPlaceName = true,
+                        currentTab = solCityUiState.currentPlaceType,
+                        selectedPlace = solCityUiState.currentPlace,
+                        navElements = navElements,
+                        onClickOnPlaceCard = { newPlace: Place ->
+                            viewModel.updateCurrentPlace(newPlace) },
+                        onClickOnPlaceTypeIcon = { placeTypeClicked: PlaceType ->
+                            viewModel.onPlaceTypeIconClicked(placeTypeClicked = placeTypeClicked)
+                        },
+                        onClickOnOpenNavDrawer =  { viewModel.updateIsDrawerOpen(true) }
+                    )
+                }
             }
         }
     }
