@@ -1,6 +1,7 @@
 package initiation.module4.solcity.ui
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -250,11 +251,13 @@ fun CityAppScreen(
         NavHost(
             navController = navController,
             startDestination = SolCityScreen.HOME_SCREEN.name,
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+
         ) {
             composable(route = SolCityScreen.HOME_SCREEN.name) {
                 HomeScreen(
-                    modifier = Modifier.padding(innerPadding),
                     navController = navController,
                     navigationType = navigationType
                 )
