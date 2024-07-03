@@ -2,6 +2,7 @@ package initiation.module4.solcity.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -10,8 +11,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -23,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -147,27 +152,35 @@ fun BottomNavigationBarPlacesType(
     onClickOnPlaceTypeIcon: ((PlaceType) -> Unit),
     modifier: Modifier = Modifier
 ) {
-    NavigationBar(modifier = modifier) {
-        for (navItem in navElements) {
-            NavigationBarItem(
-                label = {
-                    Text(
-                        text = stringResource(navItem.placeType.category),
-                        style = MaterialTheme.typography.labelSmall,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                },
-                selected = currentTab == navItem.placeType,
-                onClick = { onClickOnPlaceTypeIcon(navItem.placeType) },
-                icon = {
-                    Icon(
-                        painter = navItem.icon,
-                        contentDescription = stringResource(navItem.placeType.label)
-                    )
-                }
-            )
+    BottomAppBar(
+        modifier = modifier
+    ) {
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.Bottom
+        ) {
+            for (navItem in navElements) {
+                NavigationBarItem(
+                    label = {
+                        Text(
+                            text = stringResource(navItem.placeType.category),
+                            style = MaterialTheme.typography.labelSmall,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    },
+                    selected = currentTab == navItem.placeType,
+                    onClick = { onClickOnPlaceTypeIcon(navItem.placeType) },
+                    icon = {
+                        Icon(
+                            painter = navItem.icon,
+                            contentDescription = stringResource(navItem.placeType.label)
+                        )
+                    }
+                )
+            }
         }
+
     }
 }
 
@@ -177,19 +190,14 @@ fun PlaceListScreen(
     placeList: List<Place>,
     selectedPlace: Place,
     modifier: Modifier = Modifier,
-    currentTab: PlaceType,
-    navElements: List<PlaceTypeNavigationElements>,
-    onClickOnPlaceCard: (Place) -> Unit,
-    onClickOnPlaceTypeIcon: ((PlaceType) -> Unit)
+    onClickOnPlaceCard: (Place) -> Unit
 ) {
     Column(
         modifier = modifier
-            .fillMaxSize()
+            .fillMaxWidth()
     ) {
         LazyColumn(
             contentPadding = PaddingValues(dimensionResource(R.dimen.padding_large)),
-            modifier = Modifier
-                .weight(8F)
         ) {
             items(placeList) { item ->
                 PlaceItem(
@@ -199,16 +207,6 @@ fun PlaceListScreen(
                     onClick = { onClickOnPlaceCard(item) }
                 )
             }
-        }
-        if (showBottomNavBar) {
-            BottomNavigationBarPlacesType(
-                currentTab = currentTab,
-                onClickOnPlaceTypeIcon = onClickOnPlaceTypeIcon,
-                navElements = navElements,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1F)
-            )
         }
     }
 }

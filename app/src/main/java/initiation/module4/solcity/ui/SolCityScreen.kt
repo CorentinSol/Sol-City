@@ -40,12 +40,12 @@ import androidx.navigation.compose.rememberNavController
 import initiation.module4.solcity.R
 import initiation.module4.solcity.data.Place
 import initiation.module4.solcity.data.PlaceType
+import initiation.module4.solcity.ui.screen.BottomNavigationBarPlacesType
 import initiation.module4.solcity.ui.screen.HomeScreen
 import initiation.module4.solcity.ui.screen.PlaceDetailScreen
 import initiation.module4.solcity.ui.screen.PlaceListScreen
 import initiation.module4.solcity.ui.utils.BottomBarTypeList
 import initiation.module4.solcity.ui.utils.BottomBarTypeList.navigationDrawerTypeList
-import initiation.module4.solcity.ui.utils.PlaceTypeNavigationElements
 import initiation.module4.solcity.ui.utils.SolCityNavigationType
 
 enum class SolCityScreen {
@@ -100,7 +100,6 @@ fun SolCityListAndDetails(
     currentTab: PlaceType,
     selectedPlace: Place,
     needShowPlaceName: Boolean,
-    navElements: List<PlaceTypeNavigationElements>,
     onClickOnPlaceCard: (Place) -> Unit,
     onClickOnPlaceTypeIcon: (PlaceType) -> Unit,
     onClickOnOpenNavDrawer: () -> Unit,
@@ -117,10 +116,7 @@ fun SolCityListAndDetails(
             showBottomNavBar = false,
             selectedPlace = selectedPlace,
             placeList = placeList,
-            currentTab = currentTab,
-            navElements = navElements,
             onClickOnPlaceCard = onClickOnPlaceCard,
-            onClickOnPlaceTypeIcon = onClickOnPlaceTypeIcon,
             modifier = Modifier.weight(2F)
         )
         Surface(
@@ -150,7 +146,6 @@ fun SolCityModalNavigationRail(
             selected = false,
             onClick = onClickOnOpenNavDrawer,
             icon = {
-                //FIXME ALL icon to change for less ambiguities
                 Icon(
                     imageVector = Icons.Default.Menu,
                     contentDescription = null
@@ -200,22 +195,6 @@ fun SolCityModalNavigationDrawer(
     }
 }
 
-//@Composable
-//fun SolCityPermanentNavigationDrawer() {
-//    PermanentNavigationDrawer(
-//        drawerContent = {
-//            PermanentDrawerSheet(
-//                //TODO Width
-//                drawerContentColor = MaterialTheme.colorScheme.inverseOnSurface
-//            ) {
-//                SolCityNavigationDrawerHeader()
-//            }
-//        }
-//    ) {
-//
-//    }
-//}
-
 @Composable
 fun CityAppScreen(
     navigationType: SolCityNavigationType,
@@ -237,9 +216,7 @@ fun CityAppScreen(
             if (navigationType == SolCityNavigationType.BOTTOM_NAVIGATION
                 || currentScreen == SolCityScreen.HOME_SCREEN) {
                 SolCityTopAppBar(
-                    //FIXME List name
                     pageTitle =
-
                     when(currentScreen) {
                         SolCityScreen.valueOf(SolCityScreen.LIST_SCREEN.name)
                         -> stringResource(solCityUiState.currentPlaceType.category)
@@ -253,6 +230,20 @@ fun CityAppScreen(
                     navigateUp = { navController.navigateUp() }
                 )
             } // else no top app bar needed
+        },
+        bottomBar = {
+            if (navigationType == SolCityNavigationType.BOTTOM_NAVIGATION
+                && currentScreen == SolCityScreen.LIST_SCREEN) {
+                BottomNavigationBarPlacesType(
+                    currentTab = solCityUiState.currentPlaceType,
+                    onClickOnPlaceTypeIcon = { placeTypeClicked: PlaceType ->
+                        viewModel.onPlaceTypeIconClicked(placeTypeClicked = placeTypeClicked)
+                    },
+                    navElements = navElements,
+                    modifier = Modifier
+
+                )
+            }
         }
     ) { innerPadding ->
 
@@ -272,17 +263,12 @@ fun CityAppScreen(
                 PlaceListScreen(
                     showBottomNavBar = true,
                     selectedPlace = solCityUiState.currentPlace,
-                    currentTab = solCityUiState.currentPlaceType,
                     placeList = solCityUiState.currentPlaceList.sortedBy {
                         it.score.value
                     }.reversed(),
                     onClickOnPlaceCard = {
                        viewModel.updateCurrentPlace(it)
                        navController.navigate(SolCityScreen.DETAIL_SCREEN.name)
-                    },
-                    navElements = navElements,
-                    onClickOnPlaceTypeIcon = { placeTypeClicked: PlaceType ->
-                        viewModel.onPlaceTypeIconClicked(placeTypeClicked = placeTypeClicked)
                     }
                 )
             }
@@ -314,7 +300,6 @@ fun CityAppScreen(
                         needShowPlaceName = true,
                         currentTab = solCityUiState.currentPlaceType,
                         selectedPlace = solCityUiState.currentPlace,
-                        navElements = navElements,
                         onClickOnPlaceCard = { newPlace: Place ->
                             viewModel.updateCurrentPlace(newPlace) },
                         onClickOnPlaceTypeIcon = { placeTypeClicked: PlaceType ->
