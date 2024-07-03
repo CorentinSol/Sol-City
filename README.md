@@ -10,7 +10,23 @@ The app is available in english and in french.
 
 ## Screenshots
 
-//TODO
+### Compact Screen Size
+
+|![image](https://github.com/CorentinSol/Sol-City/assets/155522524/12773ca8-7b1e-4461-809c-ae4c314c44d0)|![image](https://github.com/CorentinSol/Sol-City/assets/155522524/d1327292-e45f-4895-94aa-73989f478c6f)|![image](https://github.com/CorentinSol/Sol-City/assets/155522524/80942511-f11b-4596-9be0-999ac9a50d32)|![image](https://github.com/CorentinSol/Sol-City/assets/155522524/761eeef7-e1bc-4a56-8f82-c9012df9b9ce)|
+|-|-|-|-|
+
+### Medium and Expanded Screen Size
+
+|![image](https://github.com/CorentinSol/Sol-City/assets/155522524/0377a079-07d5-4eec-879a-77cdae1a2028)|![image](https://github.com/CorentinSol/Sol-City/assets/155522524/71eaf715-939c-4eaf-bcd8-8c99f1e24feb)|
+|-|-|
+
+|![image](https://github.com/CorentinSol/Sol-City/assets/155522524/dc9ee674-674e-4d9b-ad0b-857cc6bb850a)|![image](https://github.com/CorentinSol/Sol-City/assets/155522524/a8d85832-0fab-4bf8-bb0c-d096a333d8b9)|
+|-|-|
+
+### Dark Theme and French
+
+|![image](https://github.com/CorentinSol/Sol-City/assets/155522524/9e4acaec-4d25-4fcc-81c5-3830fe8ddaad)|![image](https://github.com/CorentinSol/Sol-City/assets/155522524/f85bd0fe-6e2c-44c0-9812-fbf2a1e620a3)|
+|-|-|
 
 ## Constraints
 
@@ -102,12 +118,6 @@ It prevents long names being cut in the list of places.
 
 The part of the screen displaying all details about a place has a different background color - `inversePrimary` -
 and a rounded corner shape reminding a card, to help the user distinguish each part of the screen.
-
-## View Model
-
-# Testing
-
-//TODO
 
 # Images Used
 
